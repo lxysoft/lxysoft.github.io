@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>User Profile Page - Ace Admin</title>
+
+		<meta name="description" content="3 styles with inline editable feature" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="aceAdmin/assets/css/bootstrap.css" />
+		<link rel="stylesheet" href="aceAdmin/components/font-awesome/css/font-awesome.css" />
+
+		<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="aceAdmin/components/_mod/jquery-ui.custom/jquery-ui.custom.css" />
+		<link rel="stylesheet" href="aceAdmin/components/jquery.gritter/css/jquery.gritter.css" />
+		<link rel="stylesheet" href="aceAdmin/components/select2/dist/css/select2.css" />
+		<link rel="stylesheet" href="aceAdmin/components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" />
+		<link rel="stylesheet" href="aceAdmin/components/_mod/x-editable/bootstrap-editable.css" />
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="aceAdmin/assets/css/ace-fonts.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="aceAdmin/assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="aceAdmin/assets/css/ace-part2.css" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="aceAdmin/assets/css/ace-skins.css" />
+		<link rel="stylesheet" href="aceAdmin/assets/css/ace-rtl.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="aceAdmin/assets/css/ace-ie.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="aceAdmin/assets/js/ace-extra.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="aceAdmin/components/html5shiv/dist/html5shiv.min.js"></script>
+		<script src="aceAdmin/components/respond/dest/respond.min.js"></script>
+		<![endif]-->
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script src="aceAdmin/components/jquery/dist/jquery.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="aceAdmin/components/jquery.1x/dist/jquery.js"></script>
+<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='aceAdmin/components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>"+"<"+"/script>");
+		</script>
+		<script src="aceAdmin/components/bootstrap/dist/js/bootstrap.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="aceAdmin/components/ExplorerCanvas/excanvas.js"></script>
+		<![endif]-->
+		<script src="aceAdmin/components/_mod/jquery-ui.custom/jquery-ui.custom.js"></script>
+		<script src="aceAdmin/components/jqueryui-touch-punch/jquery.ui.touch-punch.js"></script>
+		<script src="aceAdmin/components/jquery.gritter/js/jquery.gritter.js"></script>
+		<script src="aceAdmin/components/bootbox.js/bootbox.js"></script>
+		<script src="aceAdmin/components/_mod/easypiechart/jquery.easypiechart.js"></script>
+		<script src="aceAdmin/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+		<script src="aceAdmin/components/jquery.hotkeys/index.js"></script>
+		<script src="aceAdmin/components/_mod/bootstrap-wysiwyg/bootstrap-wysiwyg.js"></script>
+		<script src="aceAdmin/components/select2/dist/js/select2.js"></script>
+		<script src="aceAdmin/components/fuelux/js/spinbox.js"></script>
+		<script src="aceAdmin/components/_mod/x-editable/bootstrap-editable.js"></script>
+		<script src="aceAdmin/components/_mod/x-editable/ace-editable.js"></script>
+		<script src="aceAdmin/components/jquery.maskedinput/dist/jquery.maskedinput.js"></script>
+
+		<!-- ace scripts -->
+		<script src="aceAdmin/assets/js/src/elements.scroller.js"></script>
+		<script src="aceAdmin/assets/js/src/elements.colorpicker.js"></script>
+		<script src="aceAdmin/assets/js/src/elements.fileinput.js"></script>
+		<script src="aceAdmin/assets/js/src/elements.typeahead.js"></script>
+		<script src="aceAdmin/assets/js/src/elements.wysiwyg.js"></script>
+		<script src="aceAdmin/assets/js/src/elements.spinner.js"></script>
+		<script src="aceAdmin/assets/js/src/elements.treeview.js"></script>
+		<script src="aceAdmin/assets/js/src/elements.wizard.js"></script>
+		<script src="aceAdmin/assets/js/src/elements.aside.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.basics.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.scrolltop.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.ajax-content.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.touch-drag.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.sidebar.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.sidebar-scroll-1.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.submenu-hover.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.widget-box.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.settings.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.settings-rtl.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.settings-skin.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.widget-on-reload.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.searchbox-autocomplete.js"></script>
+		<!-- the following scripts are used in demo only for onpage help and you don't need them -->
+		<link rel="stylesheet" href="aceAdmin/assets/css/ace.onpage-help.css" />
+		<link rel="stylesheet" href="aceAdmin/docs/assets/js/themes/sunburst.css" />
+
+		<script type="text/javascript"> ace.vars['base'] = '..'; </script>
+		<script src="aceAdmin/assets/js/src/elements.onpage-help.js"></script>
+		<script src="aceAdmin/assets/js/src/ace.onpage-help.js"></script>
+		<script src="aceAdmin/docs/assets/js/rainbow.js"></script>
+		<script src="aceAdmin/docs/assets/js/language/generic.js"></script>
+		<script src="aceAdmin/docs/assets/js/language/html.js"></script>
+		<script src="aceAdmin/docs/assets/js/language/css.js"></script>
+		<script src="aceAdmin/docs/assets/js/language/javascript.js"></script>
+	</head>
+
+	<body class="no-skin">
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<a class="btn-scroll-up btn btn-sm btn-inverse display" id="btn-scroll-up" href="#">
+							<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+						</a>
+						<div class="page-header">
+							<h1>
+								我的简历主页
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									&emsp;更多信息请至菜单栏查看
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="clearfix">
+									<div class="pull-left alert alert-success no-margin alert-dismissable">
+										<button type="button" class="close" data-dismiss="alert">
+											<i class="ace-icon fa fa-times"></i>
+										</button>
+										<i class="ace-icon fa fa-umbrella bigger-120 blue"></i>
+										工作环境分为三个区：舒适区、非舒适区、艰难区。判别经验的不是年限，而是处于非舒适区与艰难区的时间。安逸的生活会使人颓废，唯独努力钻研、奋斗、学习，才是正途！
+									</div>
+								</div>
+								<div class="hr dotted"></div>
+								<div class="">
+									<div id="user-profile-2" class="user-profile">
+										<div class="tabbable">
+											<ul class="nav nav-tabs padding-18">
+												<li class="active">
+													<a data-toggle="tab" href="#home" aria-expanded="true">
+														<i class="green ace-icon fa fa-user bigger-120"></i>
+														简介
+													</a>
+												</li>
+
+												<li class="">
+													<a data-toggle="tab" href="#feed" aria-expanded="false">
+														<i class="orange ace-icon fa fa-paw bigger-120"></i>
+														项目介绍
+													</a>
+												</li>
+											</ul>
+
+											<div class="tab-content no-border padding-24">
+												<div id="home" class="tab-pane active">
+													<div class="row">
+														<div class="col-xs-12 col-sm-3 center">
+															<span class="profile-picture">
+																<img class="editable img-responsive" alt="Alex's Avatar" id="avatar2" src="img/李晓阳.JPG">
+															</span>
+
+															<div class="space space-4"></div>
+
+															<a href="#" class="btn btn-sm btn-block btn-success disabled">
+																<i class="ace-icon fa fa-phone bigger-120"></i>
+																<span class="bigger-110">
+																	联系电话 ：18330177221
+																</span>
+															</a>
+
+															<a href="#" class="btn btn-sm btn-block btn-primary disabled">
+																<i class="ace-icon fa fa-envelope bigger-110"></i>
+																<span class="bigger-110">邮箱：lxysoft@foxmail.com</span>
+															</a>
+														</div><!-- /.col -->
+
+														<div class="col-xs-12 col-sm-9">
+															<h4 class="blue">
+																<span class="middle">李晓阳</span>
+
+																<span class="label label-purple arrowed-in-right">
+																	<i class="ace-icon fa fa-circle smaller-80 align-middle"></i>
+																	online
+																</span>
+															</h4>
+
+															<div class="profile-user-info">
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> 性别 </div>
+
+																	<div class="profile-info-value">
+																		<span>男</span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> 现住址 </div>
+
+																	<div class="profile-info-value">
+																		<i class="fa fa-map-marker light-orange bigger-110"></i>
+																		<span>北京市</span>
+																	</div>
+																</div>
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> 籍贯 </div>
+
+																	<div class="profile-info-value">
+																		<i class="fa fa-map-marker light-orange bigger-110"></i>
+																		<span>河北省石家庄市</span>
+																	</div>
+																</div>
+		
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> 年龄 </div>
+
+																	<div class="profile-info-value">
+																		<span>23岁</span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> 学历 </div>
+
+																	<div class="profile-info-value">
+																		<span>专科</span>
+																	</div>
+																</div>
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> 出生年月 </div>
+
+																	<div class="profile-info-value">
+																		<span>１９９３ 年 ０５ 月</span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> 毕业院校 </div>
+
+																	<div class="profile-info-value">
+																		<span>河北工业职业技术学院</span>
+																	</div>
+																</div>
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> 求职意向 </div>
+
+																	<div class="profile-info-value">
+																		<span>Java工程师</span>
+																	</div>
+																</div>
+															</div>
+
+															<div class="hr hr-8 dotted"></div>
+
+															<div class="profile-user-info">
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> 网站 </div>
+
+																	<div class="profile-info-value">
+																		<a href="http://www.lxysoft.ren" target="_blank">www.lxysoft.ren(备案中)</a>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name">
+																		<i class="middle ace-icon fa fa-qq bigger-150 light-blue"></i>
+																	</div>
+																	<div class="profile-info-value">
+																		<span>472261314</span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name">
+																		<i class="middle ace-icon fa fa-weixin bigger-150 light-blue"></i>
+																	</div>
+
+																	<div class="profile-info-value">
+																		<span>meixiwangmeishiwang</span>
+																	</div>
+																</div>
+															</div>
+														</div><!-- /.col -->
+													</div><!-- /.row -->
+
+													<div class="space-20"></div>
+
+													<div class="row">
+														<div class="col-xs-12 col-sm-6">
+															<div class="widget-box transparent">
+																<div class="widget-header widget-header-small">
+																	<h4 class="widget-title smaller">
+																		<i class="ace-icon fa fa-check-square-o bigger-110"></i>
+																		个人简介
+																	</h4>
+																</div>
+
+																<div class="widget-body">
+																	<div class="widget-main">
+																		<p>
+																			&emsp;&emsp;俗话说一入JAVA深似海，学习的知识很多很多，具有较好的自学能力，在伴随时代发展、技术更迭，自学技术就显得格外重要
+																			，学习工作中使用mybase总结了一套学习笔记，包含了初级--高级--框架。每当遇到新的问题或新的知
+																			识时我都会打开它记录下来，大幅提升了总结能力，养成了文档记录的习惯。个人认为学的种类多并不代表杂，涉及的知识广了在解决问题是就会有更多的解决方案，
+																			可以选出最好最合适的方案，如果没有接触过，一些好用实用的方案就会被忽略。当然这个大多也是指围绕Java开发时使用的工具。
+																			<br/>
+																			个人技能：<br/>
+																			&emsp;1、熟悉J2EE基本框架，能基于J2EE的Spring、SpringMVC的MVC模式利用JS、JQuery、Mybatis结合Tomcat等Web发布器及XML技术，
+																					熟练使用Oracle、Mysql等进行web应用开发。<br/>
+																			&emsp;2、精通HTML，熟悉XML、CSS、Java Script等网页技术，了解UML建模语言。<br/>
+																			&emsp;3、使用过echars、d3.js、UEditor、bootstrap、poi等第三方工具。<br/>
+																			&emsp;4、能够使用easyui、ace admin构建企业OA或互联网后台。<br/>
+																			&emsp;5、熟练使用Myeclipse、Eclipse等相关开发工具，使用过WeX5开发HTML5的混合应用。
+																		</p>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-xs-12 col-sm-6">
+															<div class="widget-box transparent">
+																<div class="widget-header widget-header-small header-color-blue2">
+																	<h4 class="widget-title smaller">
+																		<i class="ace-icon fa fa-lightbulb-o bigger-120"></i>
+																		我的技能
+																	</h4>
+																</div>
+
+																<div class="widget-body">
+																	<div class="widget-main padding-16">
+																		<div class="clearfix">
+																			<div class="grid3 center">
+																				<!-- #section:plugins/charts.easypiechart -->
+																				<div class="easy-pie-chart percentage" data-percent="45" data-color="#CA5952" style="height: 72px; width: 72px; line-height: 71px; color: rgb(202, 89, 82);">
+																					<span class="percent">30</span>%
+																				<canvas height="72" width="72"></canvas></div>
+
+																				<!-- /section:plugins/charts.easypiechart -->
+																				<div class="space-2"></div>
+																				weX5
+																			</div>
+
+																			<div class="grid3 center">
+																				<div class="center easy-pie-chart percentage" data-percent="90" data-color="#59A84B" style="height: 72px; width: 72px; line-height: 71px; color: blue;">
+																					<span class="percent">80</span>%
+																				<canvas height="72" width="72"></canvas></div>
+
+																				<div class="space-2"></div>
+																				Java
+																			</div>
+
+																			<div class="grid3 center">
+																				<div class="center easy-pie-chart percentage" data-percent="80" data-color="#9585BF" style="height: 72px; width: 72px; line-height: 71px; color: purple;">
+																					<span class="percent">70</span>%
+																				<canvas height="72" width="72"></canvas></div>
+
+																				<div class="space-2"></div>
+																				Javascript/jQuery
+																			</div>
+																		</div>
+
+																		<div class="hr hr-16"></div>
+
+																		<!-- #section:pages/profile.skill-progress -->
+																		<div class="profile-skills">
+																			<div class="progress">
+																				<div class="progress-bar" style="width:85%">
+																					<span class="pull-left">Java</span>
+																					<span class="pull-right">85%</span>
+																				</div>
+																			</div>
+																			<div class="progress">
+																				<div class="progress-bar progress-bar-warning" style="width:80%">
+																					<span class="pull-left">HTML</span>
+																					<span class="pull-right">80%</span>
+																				</div>
+																			</div>
+
+																			<div class="progress">
+																				<div class="progress-bar progress-bar-success" style="width:70%">
+																					<span class="pull-left">Javascript &amp; jQuery</span>
+
+																					<span class="pull-right">70%</span>
+																				</div>
+																			</div>
+
+																			<div class="progress">
+																				<div class="progress-bar progress-bar-purple" style="width:70%">
+																					<span class="pull-left">Oracle &amp; MySQL</span>
+
+																					<span class="pull-right">70%</span>
+																				</div>
+																			</div>
+
+																			<div class="progress">
+																				<div class="progress-bar progress-bar-danger" style="width:30%">
+																					<span class="pull-left">weX5</span>
+
+																					<span class="pull-right">30%</span>
+																				</div>
+																			</div>
+																			<div class="alert alert-info">
+																				<button type="button" class="close" data-dismiss="alert">
+																					<i class="ace-icon fa fa-times"></i>
+																				</button>
+																				<strong>Linux :</strong>
+																					能够操作Linux系统实现对文件的上传下载，能够执行一些简单命令。
+																				<br>
+																			</div>
+																		</div>
+
+																		<!-- /section:pages/profile.skill-progress -->
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div><!-- /#home -->
+
+												<div id="feed" class="tab-pane">
+													<div class="col-sm-12 widget-container-col ui-sortable" id="widget-container-col-13" style="min-height: 172px;">
+											
+										<div class="widget-box transparent ui-sortable-handle" id="widget-box-13" style="opacity: 1; z-index: 0;">
+												<div class="widget-header">
+													<h4 class="widget-title lighter">项目介绍信息</h4>
+
+													<div class="widget-toolbar no-border">
+														<ul class="nav nav-tabs" id="myTab2">
+															<li class="active">
+																<a data-toggle="tab" href="#home2" aria-expanded="true">厚德京源</a>
+															</li>
+
+															<li class="">
+																<a data-toggle="tab" href="#profile2" aria-expanded="false">京锋商城</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main padding-12 no-padding-left no-padding-right">
+														<div class="tab-content padding-4">
+															<div id="home2" class="tab-pane active">
+																<!-- #section:custom/scrollbar.horizontal -->
+																<div class="scrollable-horizontal ace-scroll" data-size="800" style="position: relative; padding-top: 12px;">
+																	<div class="scroll-content"><div>
+																	<h4><b>厚德京源分销系统</b></h4><br/>
+																</div></div></div>
+																1、需求分析结束后，利用easyui开发前端页面。数据库建表<br/>	
+																2、使用SSM框架，搭建环境，使用log4j记录日志，对正常的info信息在控制台输出，error以上级别的错误输出到日志文件。<br/>
+																3、用户登录验证。 对于密码问题，数据库中存储加密密码，通过对原始输入的密码‘加盐’（在原始密码中拼入字符串）再使用md5加密再与数据库的password比对，数据库password列直接存储经过加盐加密后的32位字符串。<br/>
+																4、验证用户是否登陆，并控制其访问页面的权限。<br/>
+																5、菜单显示根据不同角色显示不同结果（权限控制）。<br/>
+																6、会员管理模块，包括了区域代理注册，经销商注册，会员注册。其中区域代理与经销商需要公司审核。<br/>
+																7、公司审核提交的区域代理申请,审核通过后在数据库中创建账面流水记录信息。将审核结果展现到页面。<br/>
+																8、审核通过后为该申请区域代理人创建登陆系统账号，并为其赋予相应的权限，根据权限在页面展示其可使用的菜单项。<br/>
+																9、报单管理模块，其中包括了产品订购，店铺报单，公司报单等功能。<br/>
+																10、客户关系模块，其中包含了销售关系、分红关系、负责关系等模块。<br/>
+																11、其中还包含了店铺管理、财务管理、信息交流、用户管理、市场分析等多个模块
+																<!-- /section:custom/scrollbar.horizontal -->
+															</div>
+
+															<div id="profile2" class="tab-pane">
+																<!-- #section:custom/scrollbar.horizontal -->
+																<div class="scrollable-horizontal ace-scroll" data-size="800" style="position: relative; padding-top: 12px;">
+																	<div class="scroll-content" ><div >
+																	<h4><b>京锋商城电商系统</b></h4><br/>
+																</div></div></div>
+																1、对项目进行需求分析，根据分析结果利用weX5模板开发APP页面。并在数据库创建数据库表。<br/>
+																2、使用SSM框架，搭建环境，并使用log4j记录日志,对正常的info信息在控制台输出，error以上级别的错误输出到日志文件。<br/>
+																3、在前台页面获取推荐商品、活动商品、分类展示热销商品的数据进行展示。<br/>
+																4、详细商品列表中提供多种对数据信息的排序展示，并在工具栏展示分类列表。<br/>
+																5、在订单页展示该用户的订单列表。<br/>
+																6、会员中心可以查看当前会员的所有优惠信息以及个人的订单状态。<br/>
+																7、前台的主要的模块分为商品信息、商品分类、订单信息、优惠信息、会员卡券、商品评价、收藏与购物车信息等模块。<br/>
+																8、前台与后台分别运行在两台服务器上，后台使用SSM框架实现业务逻辑并从数据库获取数据，以接口的形式暴露供前台获取数据，完成前后台的交互。<br/>
+																9、除了前台的页面以外，还需要在后台提供操作数据的后台网页。其中包含了对表的CRUD操作、数据分析、制定优惠策略、财务管理、客户关系、售后管理等模块。<br/>
+																
+																<!-- /section:custom/scrollbar.horizontal -->
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+													</div>
+												</div><!-- /#feed -->
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div>
+				</div>
+			</div><!-- /.main-content -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+	</body>
+</html>
