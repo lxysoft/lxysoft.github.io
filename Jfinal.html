@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>分页封装</title>
+	<!-- Begin Jekyll SEO tag v2.0.0 -->
+<title>Tempus</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!-- End Jekyll SEO tag -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+	<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #333856;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #333856;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #333856;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+</head>
+
+<body>
+
+ 
+<!-- Header -->
+<header id="header" class="alt">
+	<a href="index.html" class="logo"><strong>Lxy</strong> <span>我的博客首页</span></a>
+	<nav>
+		<a href="#menu">菜单</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+		        <li><a href="index.html">首页</a></li>
+		        <li><a href="Landing.html">以列表展示</a></li>
+		        <li><a target="_blank" href="http://www.lxysoft.ren">关于我</a></li>
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button fit">返回</a></li>
+	</ul>
+</nav> <!-- Banner -->
+
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+			<h2>Jfinal 敏捷开发框架</h2>
+		</header>
+		<span class="image main"><img src="images/pic02.jpg" height="350px" alt="" /></span>
+		
+<p>　　Jfinal简单来说就是为了节约开发成本而出现的国产开源框架，打乱了MVC的架构，在开发时间上打开可以节约大概三分之一的时间。但是损失也是很惨重的，对于后期的维护是致命的。所以Jfinal值适合用于小型的项目，但是还是很有发展前景的，毕竟在开发成本上可以使小公司节约大量的开发成本。从而提高利润并提高业内竞争力。利弊参半，还是在合适的环境下选择合适的框架才是硬道理，Jfinal就是很适合小项目，后期不需要太多的改动。</p>
+<blockquote>
+<ol>
+<li>Jfian所需Jar介绍。</li>
+</ol>
+</blockquote>
+<h6>JFinal 自身对第三方无依赖，但当需要第三方功能支持时则需要添加相应的 jar 文件</h6>
+<p>1：cglib-nodep-3.1.jar 支持业务层 AOP，例如在 controller 中调用 enhance(...)<br/>
+2：freemarker-2.3.20.jar 支持 FreeMarker 视图类型<br/>
+3：cos-26Dec2008.jar 支持文件上传功能<br/>
+4：mysql-connector-java-5.1.20-bin.jar 支持 mysql 数据库<br/>
+5：druid-1.0.5.jar 支持 Druid 数据库连接池<br/>
+6：c3p0-0.9.5.1.jar、mchange-commons-java-0.2.10.jar 数据库连接池 c3p0<br/>
+7：jackson-core-2.5.3.jar、jackson-databind-2.4.3.jar、jackson-annotations-2.4.0.jar json与xml操作工具jackson<br/>
+8：fastjson-1.2.6.jar json 操作工具 fastjson<br/>
+9：ehcache-core-2.5.2.jar、slf4j-api-1.6.1.jar、slf4j-log4j12-1.6.1.jar 支持 EhCache，
+   在使用EhCache时需要有ehcache.xml文件<br/>
+10：log4j-1.2.16.jar 支持 log4j 日志，当此文件不存在时，自动切换至 JDK Logger，
+   注意，log4j需要相应的配置文件 log4j.properties，否则当log4j-1.2.16.jar 存在
+   而log4j.properties 不存在时无日志输出。jdk logger 需要的logging.properties文件
+   也在此目录下提供了<br/>
+11：javax.servlet.jsp.jstl-1.2.0.v201105211821.jar 与 
+   org.apache.taglibs.standard.glassfish-1.2.0.v201112081803.jar
+   支持JSP标准标签库：JSTL(JSP Standard Tag Library) <br/>
+12：sqlite-jdbc-3.7.2.jar 支持 Sqlite 数据库<br/>
+13：ojdbc6.jar Oracle Database 11g Release 2 (11.2.0.3) JDBC Driver<br/>
+14：velocity-1.7.jar、velocity-1.7-dep.jar支持 Velocity 视图<br/>
+注意：在使用tomcat开发或部署项目时，需要删除jetty-server-xxx.jar 文件，以免造成冲突<br/></p>
+<blockquote>
+<p>2.在项目中导入Jar</p>
+<p>3.配置web.xml文件 </p>
+</blockquote>
+<pre><code>    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot; xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot; id=&quot;WebApp_ID&quot; version=&quot;2.5&quot;&gt;
+      &lt;display-name&gt;jfinal&lt;/display-name&gt;
+      &lt;welcome-file-list&gt;
+        &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+        &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;
+        &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+        &lt;welcome-file&gt;default.html&lt;/welcome-file&gt;
+        &lt;welcome-file&gt;default.htm&lt;/welcome-file&gt;
+        &lt;welcome-file&gt;default.jsp&lt;/welcome-file&gt;
+      &lt;/welcome-file-list&gt;
+
+      &lt;filter&gt;
+        &lt;filter-name&gt;jfinal&lt;/filter-name&gt;
+        &lt;filter-class&gt;com.jfinal.core.JFinalFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;!-- 初始化时读取配置类 --&gt;
+            &lt;param-name&gt;configClass&lt;/param-name&gt;
+            &lt;!-- 自己写的配置类的存放位置 --&gt;
+            &lt;param-value&gt;com.bjsxt.jfinal.common.JFConfig&lt;/param-value&gt;
+        &lt;/init-param&gt;
+      &lt;/filter&gt;
+      &lt;filter-mapping&gt;
+        &lt;filter-name&gt;jfinal&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+      &lt;/filter-mapping&gt;
+    &lt;/web-app&gt;
+</code></pre>
+
+<blockquote>
+<p>4.创建common工具包，并创建实体类，配置Jfinal的所有配置项。（继承Jfinal提供的类JFinalConfig)</p>
+</blockquote>
+<pre><code>    public class JFConfig extends JFinalConfig{
+        //这是配置系统常量与默认参数的地方
+        @Override
+        public void configConstant(Constants me) {
+            //将上传文件保存到lol目录下
+            me.setBaseUploadPath(&quot;lol&quot;);
+            me.setDevMode(true);//启动开发者模式
+
+        }
+        //这是配置Controller
+        @Override
+        public void configRoute(Routes me) {
+            //注册Controller ,将Controller映射到/test命名空间上
+            me.add(&quot;/test&quot;, HelloController.class);
+        }
+
+        //这是配置数据库的地方
+        @Override
+        public void configPlugin(Plugins me) {
+            //初始化连接池参数
+            C3p0Plugin c3p0 = new C3p0Plugin(&quot;jdbc:mysql://localhost:3306/easyui?useUnicode=true&amp;characterEncoding=UTF-8&quot;, &quot;root&quot;, &quot;&quot;);
+            //ActiveRecordPlugin就是JFINAL操作数据库的核心类,它以Plugin(插件)的形式出现
+            ActiveRecordPlugin arp= new ActiveRecordPlugin(c3p0);
+            me.add(c3p0);//将插件注册到JFINAL中(连个add顺序不能颠倒)
+            me.add(arp);
+            //对Emp Model(模型)类进行加载,将Emp对象与emp表对应
+            arp.addMapping(&quot;emp&quot;, &quot;empno&quot;, Emp.class);
+        }
+        //这是配置拦截器的地方(基本不用)
+        @Override
+        public void configInterceptor(Interceptors me) {
+            // TODO Auto-generated method stub
+
+        }
+        //这是配置扩展组件的地方(忘了他吧)
+        @Override
+        public void configHandler(Handlers me) {
+            // TODO Auto-generated method stub
+
+        }
+    }
+</code></pre>
+
+<blockquote>
+<p>5.创建实体类该类存在model包下 （继承Jfinal提供的类Model,无需属性以及get、set方法)</p>
+</blockquote>
+<pre><code>    //在JFINAL ,对Model(模型层)进行了封装,只需要继承Model类就可以自动完成CRUD操作的基本实现
+    import com.jfinal.plugin.activerecord.Model;
+    public class Emp extends Model&lt;Emp&gt;{
+        public static Emp dao = new Emp();创建对象
+    }
+</code></pre>
+
+<blockquote>
+<p>6.开放controller 包含了页面数据的获取以及对数据库的CRUD的全部操作（继承Jfinal提供的类Controller)</p>
+</blockquote>
+<pre><code>    public class HelloController extends Controller{
+        //Jfinal接收请求的地方就是 public void XXX()
+        public void hello(){
+
+            String name = this.getPara(&quot;name&quot;);//getPara系列方法可以完成接收数据到类型转换的过程
+            System.out.println(name);
+
+            UploadFile ufo = this.getFile(&quot;photo&quot;);  //接收文件（需要使用 cos-26Dec2008.jar 包来支持上传功能）
+
+            System.out.println(&quot;原始的文件名是:&quot; + ufo.getOriginalFileName());
+            System.out.println(&quot;临时文件目录:&quot; + ufo.getFile());
+
+            //就是对response.getWriter().println()的封装
+            //renderXXX方法就是将数据按不同的格式输出
+            //&quot;&lt;b&gt;你好,中国&lt;/b&gt;&quot;
+            //this.renderFile下载文件
+            Map rec = new HashMap();
+            rec.put(&quot;message&quot;, &quot;费玉清老司机&quot;);
+            //this.renderJson(rec);//将数据自动转换为json向页面输出
+
+            this.setAttr(&quot;message&quot;, &quot;雷吼&quot;);//存放到request作用域
+            this.setSessionAttr(&quot;message&quot;, &quot;猴犀利&quot;);//存放到session作用域
+            this.renderJsp(&quot;/index.jsp&quot;);//请求派发
+            //this.redirect(&quot;/index&quot;);//页面重定向
+        }
+
+        //查询
+        public void list(){
+            List&lt;Emp&gt; list =Emp.dao.find(&quot;select * from emp where job = ? and sal &gt; ? and ename like ?&quot; , new Object[]{&quot;SALESMAN&quot; , 800f , &quot;A%&quot;});
+            this.setAttr(&quot;list&quot;, list);
+            //this.renderNull();//renderNull就是啥都不输出了
+            this.renderJsp(&quot;/list.jsp&quot;);//请求转发到jsp的页面
+        }
+
+        //分页
+        public void paginate(){
+            Integer page = this.getParaToInt(&quot;page&quot;);//页面获取int类型的数据
+            Integer rows = this.getParaToInt(&quot;rows&quot;);
+            Float sal = Float.parseFloat(this.getPara(&quot;sal&quot;));
+            //参数依次为（当前页数，每页条数，sql语句from之前的语句，from之后的语句，传入的参数是可变参数）
+            Page&lt;Emp&gt; p = Emp.dao.paginate(page, rows, &quot;select * &quot;, &quot;from emp where sal &gt; ?&quot; , new Object[]{sal});
+            this.setAttr(&quot;page&quot;, p);
+            this.renderJsp(&quot;/pagination.jsp&quot;);
+        }
+
+        //新增
+        @Before(Tx.class)//在方法上运用声明式事务与SM的@Transactional作用相同,运行成功自动提交,运行失败(时机是Exception的子类)则自动回滚
+        public void create(){
+            //getModel()方法会自动将请求参数中emp.开头的参数设置到对应的Emp属性中(这个属性是由jfinal自动生成)
+            Emp e = this.getModel(Emp.class, &quot;emp&quot;);
+            e.save();//新增数据,搞掂
+            this.renderText(e.getStr(&quot;ename&quot;) + &quot;员工保存成功!&quot;);//页面输出文本格式的字符串，对象中的属性使用getXxx，Xxx为属性类型缩写获取。
+        }
+
+        //修改
+        @Before(Tx.class)
+        public void update(){
+            Emp e = this.getModel(Emp.class , &quot;emp&quot;);
+            e.update();//update方法必须要求empno属性有值才允许更新
+            this.renderText(e.getStr(&quot;ename&quot;) + &quot;员工更新成功!&quot;);
+        }
+
+        //分页删除
+        @Before(Tx.class)//在方法上运用声明式事务与SM的@Transactional作用相同,运行成功自动提交,运行失败(时机是Exception的子类)则自动回滚
+        public void delete(){
+            Integer empno = this.getParaToInt(&quot;empno&quot;);
+            Emp.dao.deleteById(empno);
+            this.renderText(&quot;删除成功&quot;);
+        }
+    } 
+</code></pre>
+
+	</div>
+</section>
+
+</div>
+
+  <!-- Contact -->
+<section id="contact">
+	<div class="inner">
+		<section class="split">
+			<section>
+				<div class="contact-method">
+					<span class="icon alt fa-envelope"></span>
+					<h3>Email</h3>
+					<span>lxysoft@foxmail.com</span>
+				</div>
+			</section>
+		</section>
+		<section class="split">
+			<section>
+				<div class="contact-method">
+					<span class="icon alt fa-home"></span>
+					<h3>Address</h3>
+					<span>北京</span>
+				</div>
+			</section>
+		</section>
+	</div>
+</section>
+</div>
+
+<!-- Scripts -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.scrolly.min.js"></script>
+	<script src="js/jquery.scrollex.min.js"></script>
+	<script src="js/skel.min.js"></script>
+	<script src="js/util.js"></script>
+	<!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+	<script src="js/main.js"></script>
+
+
+</body>
+
+</html>
