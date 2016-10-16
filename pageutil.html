@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>分页封装</title>
+	<!-- Begin Jekyll SEO tag v2.0.0 -->
+<title>Tempus</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!-- End Jekyll SEO tag -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #333856;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #333856;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #333856;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+</head>
+
+<body>
+
+ 
+<!-- Header -->
+<header id="header" class="alt">
+	<a href="index.html" class="logo"><strong>Lxy</strong> <span>我的博客首页</span></a>
+	<nav>
+		<a href="#menu">菜单</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+		        <li><a href="index.html">首页</a></li>
+		        <li><a href="Landing.html">以列表展示</a></li>
+		        <li><a target="_blank"  href="http://www.lxysoft.ren">关于我</a></li>
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button fit">返回</a></li>
+	</ul>
+</nav> <!-- Banner -->
+
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+			<h2>封装分页工具类</h2>
+		</header>
+		<span class="image main"><img src="images/pic01.jpg" height="350px" alt="" /></span>
+		
+<p>　　对于分页在没有一个好的工具时，实现起来比较繁琐。在这里提供了一套完整的分页封装代码，以及在项目中的使用。话不多说，上代码了－－－－－ </p>
+<blockquote>
+<ol>
+<li>将分页所需要的各种数据算法封装到方法中。(省略了属性的get、set方法)</li>
+</ol>
+</blockquote>
+<pre><code>public class PageUtil {
+    private int pageNum;//当前页码数
+    private int pageSize;//每页显示多少条数据
+    private int total;//总条数
+    private int rowStart;//每页起始第一条数据的索引数
+    private int pageCount;//总页码数
+    private boolean hasPre;//是否有上一页
+    private int prePage;//上一页页码
+    private int firstPage;//首页数
+    private boolean hasNext;//是否有下一页
+    private int nextPage;//下一页页码
+    private int lastPage;//最后一个页数
+    private int everyPageCount = 10;//每页显示多少页;
+    private int everyPageStart;//每页页码起始数
+    private int everyPageEnd;//每页页码结束数
+    private List dataList;//存储分页后的数据
+    public PageUtil(String pageNumStr,String pageSizeStr,int total) {
+        //由页面获取的当前页码数为字符串对其进行判断并转型。
+        this.pageNum = Integer.parseInt(pageNumStr == null ? &quot;1&quot;:pageNumStr);
+        //由页面获取的每页显示数据的条数对其判断以及转型。
+        this.pageSize = Integer.parseInt((String) (pageSizeStr == null ? &quot;10&quot;:pageSizeStr));
+        this.total = total;
+        //每页起始第一条数据的索引数 = (当前页数 - 1)*每页显示的条数
+        this.rowStart = (this.pageNum - 1) * this.pageSize;
+        //总页码数 = （总数据转为浮点型/每页数据条数）向上取整强转为int
+        this.pageCount = (int) Math.ceil(total*1.0/pageSize);
+        //页码起始数 = 当前页-每页显示的页码数/2 小于1 就赋值为1.大于1则为this.pageNum-this.everyPageCount/2
+        this.everyPageStart = (this.pageNum-this.everyPageCount/2)&lt;1 ? 1 : this.pageNum-this.everyPageCount/2;
+        //页码结束数 = 页码起始数 + 页码总个数 -1  大于等于  当前页  则为其赋值为当前页值，小于当前页则为 this.everyPageStart+this.everyPageCount - 1
+        this.everyPageEnd = (this.everyPageStart+this.everyPageCount - 1) &gt;= this.pageCount ? this.pageCount : this.everyPageStart+this.everyPageCount - 1;
+        if(this.pageNum != 1){
+            this.hasPre = true; 
+            this.prePage = this.pageNum - 1;
+            this.firstPage = 1;
+        }
+        if(this.pageNum &lt; this.pageCount){
+            this.hasNext = true;
+            this.nextPage = this.pageNum + 1;
+            this.lastPage = this.pageCount;
+        }
+    }
+</code></pre>
+
+<blockquote>
+<p>2.封装完成后开始使用！在MVC下的使用展示。（与此同时还需要在Dao层添加获取总数 Total代码）</p>
+</blockquote>
+<pre><code>获取总数代码省略
+</code></pre>
+
+<blockquote>
+<p>3.使用上述封装类PageUtil，传入参数实例化后可从工具类中获取所有与分页有关的属性值。 </p>
+</blockquote>
+<pre><code>    //从作用域中取出每页显示条数
+    String pageSizeStr = req.getParameter(&quot;size&quot;);
+    //从作用域中读取当前页数
+    String pageNumStr = req.getParameter(&quot;num&quot;);
+    //获得数据的总条数
+    int total = AdminDB.selTotal();
+    //创建工具类实例并传入所需参数
+    PageUtil pageUtil = new PageUtil(pageNumStr, pageSizeStr, total);
+</code></pre>
+
+<blockquote>
+<p>4.在Dao层中在原有的SQL 查询语句上加上响应的分页语句。 例如：'select * from user limit ?,?'<br/></p>
+</blockquote>
+<h6>&emsp;&emsp;我使用的是MySQL数据库。根据不同数据库添加不同的分页查询语句即可。在第三条中获取的PageUtil对象中获取，所需要的数据到数据库获取查询结果即可。我的代码样板如下：</h6>
+<pre><code>    public static List&lt;User&gt; allUser(PageUtil pageUtil) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = &quot;select * from user limit ?,?&quot;;
+        ResultSet rs = null;
+        con = SxtJdbcUtil.createConnection();
+        List&lt;User&gt; list = new ArrayList&lt;User&gt;();
+        try {
+            ps = con.prepareStatement(sql);
+            //从PageUtil中获取第一条数据的索引数并传入sql语句中
+            ps.setInt(1, pageUtil.getRowStart());
+            ///从PageUtil中获取每页显示的条数传入sql
+            ps.setInt(2, pageUtil.getPageSize());
+            rs = ps.executeQuery();
+            while(rs.next()){
+                User user = new User();
+                user.setUserId(rs.getInt(&quot;userid&quot;));
+                user.setRealName(rs.getString(&quot;realname&quot;));
+                user.setAddress(rs.getString(&quot;useradd&quot;));
+                user.setUserTel(rs.getString(&quot;usertel&quot;));
+                user.setUserPower(rs.getString(&quot;userpower&quot;));
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            SxtJdbcUtil.closeAll(con, ps, rs);
+        }
+        return list ;
+    }
+</code></pre>
+
+<blockquote>
+<p>5.在也面画出分页栏。（在BootStrap的模板中可以找到很多自行选择样式）这里提供一个简单的展示这其中有使用JSTL的核心标签库，用来做判断是否是当前页并提供不同的样式展示出来。(URL中携带的参数num是页数，size是每页显示条数)</p>
+</blockquote>
+<pre><code>    &lt;c:choose&gt;
+        &lt;!-- 判断是否有上一页 有的话显示 链接 --&gt;
+            &lt;c:when test=&quot;${pageUtil.hasPre  }&quot;&gt;
+                &lt;a href=&quot;AdminServlet.action?method=allUser&amp;num=${pageUtil.firstPage }&amp;size=${pageUtil.pageSize }&quot;&gt;首页&lt;/a&gt;
+                &lt;a href=&quot;AdminServlet.action?method=allUser&amp;num=${pageUtil.prePage }&amp;size=${pageUtil.pageSize }&quot;&gt;上一页&lt;/a&gt;
+            &lt;/c:when&gt;
+        &lt;/c:choose&gt;
+        &lt;!-- 循环遍历从数据库读取的内容并写入页面表格内 --&gt;
+        &lt;c:forEach  begin=&quot;${pageUtil.everyPageStart }&quot; end=&quot;${pageUtil.everyPageEnd }&quot; var=&quot;items&quot;&gt;
+            &lt;c:choose&gt;
+                &lt;c:when test=&quot;${items == pageUtil.pageNum }&quot;&gt;
+                    &lt;a href=&quot;AdminServlet.action?method=allUser&amp;num=${items }&amp;size=${pageUtil.pageSize }&quot; style=&quot;color: red;&quot;&gt;${items }&lt;/a&gt;
+                &lt;/c:when&gt;
+                &lt;c:otherwise&gt;
+                    &lt;a href=&quot;AdminServlet.action?method=allUser&amp;num=${items }&amp;size=${pageUtil.pageSize }&quot;&gt;${items }&lt;/a&gt;
+                &lt;/c:otherwise&gt;
+            &lt;/c:choose&gt;
+        &lt;/c:forEach&gt;
+        &lt;c:choose&gt;
+        &lt;!-- 判断是否有下一个有的话显示链接 --&gt;
+            &lt;c:when test=&quot;${pageUtil.hasNext  }&quot;&gt;
+                &lt;a href=&quot;AdminServlet.action?method=allUser&amp;num=${pageUtil.nextPage }&amp;size=${pageUtil.pageSize }&quot;&gt;下一页&lt;/a&gt;
+                &lt;a href=&quot;AdminServlet.action?method=allUser&amp;num=${pageUtil.lastPage }&amp;size=${pageUtil.pageSize }&quot;&gt;尾页&lt;/a&gt;
+            &lt;/c:when&gt;
+        &lt;/c:choose&gt;
+</code></pre>
+
+<h6>至此对于分页的封装与测试已经完成，希望对你有所帮助！</h6>
+
+	</div>
+</section>
+
+</div>
+
+  <!-- Contact -->
+<section id="contact">
+	<div class="inner">
+		<section class="split">
+			<section>
+				<div class="contact-method">
+					<span class="icon alt fa-envelope"></span>
+					<h3>Email</h3>
+					<span>lxysoft@foxmail.com</span>
+				</div>
+			</section>
+		</section>
+		<section class="split">
+			<section>
+				<div class="contact-method">
+					<span class="icon alt fa-home"></span>
+					<h3>Address</h3>
+					<span>北京</span>
+				</div>
+			</section>
+		</section>
+	</div>
+</section>
+</div>
+
+<!-- Scripts -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.scrolly.min.js"></script>
+	<script src="js/jquery.scrollex.min.js"></script>
+	<script src="js/skel.min.js"></script>
+	<script src="js/util.js"></script>
+	<!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+	<script src="js/main.js"></script>
+
+
+</body>
+
+</html>
